@@ -330,12 +330,7 @@ public class SwiftSpeechToTextPlugin: NSObject, FlutterPlugin {
         catch {
             os_log("Error stopping listen: %{PUBLIC}@", log: pluginLog, type: .error, error.localizedDescription)
         }
-        do {
-            try self.audioSession.setActive(false, options: .notifyOthersOnDeactivation)
-        }
-        catch {
-            os_log("Error deactivation: %{PUBLIC}@", log: pluginLog, type: .info, error.localizedDescription)
-        }
+        os_log("Info: Skip disable audio session")
         self.invokeFlutter( SwiftSpeechToTextCallbackMethods.notifyStatus, arguments: SpeechToTextStatus.done.rawValue )
 
         currentRequest = nil
